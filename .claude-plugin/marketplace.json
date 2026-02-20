@@ -1,0 +1,12 @@
+{
+  "name": "caldiaworks-marketplace",
+  "owner": {
+    "name": "CaldiaWorks"
+  },
+  "metadata": {
+    "description": "CaldiaWorks plugin marketplace",
+    "version": "0.1.0",
+    "pluginRoot": "./plugins"
+  },
+  "plugins": []
+}
