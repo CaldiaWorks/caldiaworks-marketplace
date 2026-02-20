@@ -5,8 +5,13 @@
   },
   "metadata": {
     "description": "CaldiaWorks plugin marketplace",
-    "version": "0.1.0",
-    "pluginRoot": "./plugins"
+    "version": "0.1.2"
   },
-  "plugins": []
+  "plugins": [
+    {
+      "name": "caldiaworks",
+      "source": "./",
+      "skills": ["./skills/ears", "./skills/usdm"]
+    }
+  ]
 }
