@@ -1,0 +1,68 @@
+{
+  "skill_name": "deep-research",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "YouTube動画の企画案を考える手順について調査してほしい",
+      "expected_output": "Research Question Map with 3-7 precisely stated questions targeting knowledge gaps, followed by a research plan with investigation angles and dependency ordering. Questions should go beyond generic advice and identify what practitioners disagree about or what has changed recently.",
+      "files": [],
+      "assertions": [
+        "Phase 1 produces a Research Question Map before any web search occurs",
+        "Each question in the map has a category (factual/comparative/causal/evaluative)",
+        "Each question explicitly states what is commonly known and what is genuinely unknown or contested as separate items",
+        "Each question specifies evidence criteria describing what would constitute an adequate answer",
+        "Question dependencies are stated with reasoning explaining WHY each dependency exists",
+        "Phase 2 presents an investigation plan with at least 2 angles per question",
+        "Investigation angles describe what to look for and why, not just search queries",
+        "The investigation plan is explicitly documented as output before any searches begin",
+        "Phase 3 executes searches derived from investigation angles, not from the original theme verbatim",
+        "Follow-up searches are conducted when evidence criteria are not met or contradictions are found",
+        "Phase 4 report is organized by research questions, not by sources",
+        "Each report section synthesizes information from multiple sources with citations",
+        "The report distinguishes between source-grounded facts and the author's own analysis using explicit markers",
+        "At least one report section contains a specific, actionable recommendation with concrete details (tool names, numbers, or steps)",
+        "The skill instructions specify .docs/ as the output directory for the research report"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "2025年以降のフロントエンド開発において React と Vue のどちらを採用すべきか、技術的・組織的観点から比較分析してほしい",
+      "expected_output": "Structured comparison addressing technical differences, ecosystem maturity, hiring market, migration costs, and future trajectory. Research questions should target genuinely contested points rather than rehashing well-known differences.",
+      "files": [],
+      "assertions": [
+        "Phase 1 produces a Research Question Map with questions targeting genuinely contested or evolving aspects of the comparison",
+        "Questions go beyond surface differences (syntax, virtual DOM) to address ecosystem dynamics, organizational fit, and forward-looking factors",
+        "Evidence criteria specify what would constitute an adequate answer for each question",
+        "Phase 2 investigation angles include angles for practitioner perspectives, not just documentation",
+        "The investigation plan is explicitly documented as output before searches begin",
+        "Phase 3 searches are derived from investigation angles rather than generic 'React vs Vue' queries",
+        "At least one contradiction between sources is identified AND triggers a targeted follow-up search",
+        "Phase 4 report synthesizes findings per question with multi-source integration",
+        "The Synthesis section draws connections across at least 3 different research questions and identifies non-obvious patterns",
+        "The Limitations section acknowledges what could not be determined with specific reasons",
+        "At least 3 cited sources are primary or official sources (not secondary blog posts)",
+        "The skill instructions specify .docs/ as the output directory for the research report"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "リモートワークが従業員の生産性とメンタルヘルスに与える影響について調査してほしい",
+      "expected_output": "Research decomposing the broad theme into specific questions about productivity measurement, mental health indicators, mediating factors, and organizational practices. Should identify what evidence actually says vs what is commonly assumed.",
+      "files": [],
+      "assertions": [
+        "Phase 1 decomposes the broad theme into specific, precisely stated questions rather than restating the theme as questions",
+        "At least one question explicitly states a common assumption and frames the investigation as testing that assumption",
+        "At least one question addresses mediating factors or boundary conditions",
+        "Question dependencies reflect logical ordering with reasoning for each dependency",
+        "Phase 2 investigation angles specify source domains to prioritize (e.g., academic research, industry surveys, practitioner accounts)",
+        "The investigation plan is explicitly documented before any web searches",
+        "Phase 3 includes follow-up searches when initial results are insufficient",
+        "Exploration terminates based on evidence criteria satisfaction, not a fixed number of searches",
+        "Phase 4 report includes a Synthesis section that draws on findings from at least 3 different questions",
+        "Bibliography includes every cited source with URL and retrieval date",
+        "The report addresses methodological limitations (e.g., data staleness, selection bias, confounding factors)",
+        "The skill instructions specify .docs/ as the output directory for the research report"
+      ]
+    }
+  ]
+}
