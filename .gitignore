@@ -3,3 +3,7 @@
 
 CLAUDE.md
 tmp**
+
+.agent/
+.agents/
+skills-lock.json
