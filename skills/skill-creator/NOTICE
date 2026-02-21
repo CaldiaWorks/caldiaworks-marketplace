@@ -7,3 +7,6 @@ This skill is based on the skill-creator from anthropics/skills
 Modifications by CaldiaWorks:
 - Added marketplace registration step (Step 6) to the skill creation process
 - Added .claude-plugin/plugin.json generation to init_skill.py
+- Replaced PyYAML dependency with stdlib-only frontmatter parser in quick_validate.py
+- Fixed relative import in package_skill.py for cross-directory execution
+- Added __pycache__ exclusion to package_skill.py

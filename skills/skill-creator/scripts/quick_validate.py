@@ -1,12 +1,65 @@
 #!/usr/bin/env python3
 """
 Quick validation script for skills - minimal version
+
+No external dependencies required (stdlib only).
 """
 
 import sys
 import re
-import yaml
 from pathlib import Path
+
+
+def parse_frontmatter(text):
+    """Parse simple YAML frontmatter for skill validation.
+
+    Supports top-level key-value pairs with:
+    - Simple values: key: value
+    - Quoted values: key: "value" or key: 'value'
+    - Block scalars: key: >- / key: >  / key: |- / key: |
+    """
+    result = {}
+    lines = text.split('\n')
+    i = 0
+
+    while i < len(lines):
+        line = lines[i]
+
+        if not line.strip():
+            i += 1
+            continue
+
+        m = re.match(r'^([a-zA-Z][a-zA-Z0-9_-]*)\s*:\s*(.*)', line)
+        if not m:
+            i += 1
+            continue
+
+        key = m.group(1)
+        value_part = m.group(2).strip()
+
+        if value_part in ('>', '|', '>-', '|-'):
+            # Block scalar - collect indented lines
+            block_lines = []
+            i += 1
+            while i < len(lines) and (lines[i].startswith('  ') or lines[i].strip() == ''):
+                if lines[i].strip():
+                    block_lines.append(lines[i].strip())
+                i += 1
+            if value_part.startswith('>'):
+                result[key] = ' '.join(block_lines)
+            else:
+                result[key] = '\n'.join(block_lines)
+        elif not value_part:
+            result[key] = ''
+            i += 1
+        else:
+            if (value_part.startswith('"') and value_part.endswith('"')) or \
+               (value_part.startswith("'") and value_part.endswith("'")):
+                value_part = value_part[1:-1]
+            result[key] = value_part
+            i += 1
+
+    return result
 
 
 def validate_skill(skill_path):
@@ -28,11 +81,11 @@ def validate_skill(skill_path):
     frontmatter_text = match.group(1)
 
     try:
-        frontmatter = yaml.safe_load(frontmatter_text)
+        frontmatter = parse_frontmatter(frontmatter_text)
         if not isinstance(frontmatter, dict):
             return False, "Frontmatter must be a YAML dictionary"
-    except yaml.YAMLError as e:
-        return False, f"Invalid YAML in frontmatter: {e}"
+    except Exception as e:
+        return False, f"Invalid frontmatter: {e}"
 
     ALLOWED_PROPERTIES = {'name', 'description', 'license', 'allowed-tools', 'metadata', 'compatibility'}
 

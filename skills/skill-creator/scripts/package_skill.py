@@ -13,6 +13,8 @@ Example:
 import sys
 import zipfile
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 from quick_validate import validate_skill
 
 
@@ -62,7 +64,7 @@ def package_skill(skill_path, output_dir=None):
     try:
         with zipfile.ZipFile(skill_filename, 'w', zipfile.ZIP_DEFLATED) as zipf:
             for file_path in skill_path.rglob('*'):
-                if file_path.is_file():
+                if file_path.is_file() and '__pycache__' not in file_path.parts:
                     arcname = file_path.relative_to(skill_path.parent)
                     zipf.write(file_path, arcname)
                     print(f"  Added: {arcname}")
