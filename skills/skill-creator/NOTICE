@@ -1,0 +1,9 @@
+skill-creator
+Copyright 2025 Anthropic, PBC
+
+This skill is based on the skill-creator from anthropics/skills
+(https://github.com/anthropics/skills), licensed under the Apache License 2.0.
+
+Modifications by CaldiaWorks:
+- Added marketplace registration step (Step 6) to the skill creation process
+- Added .claude-plugin/plugin.json generation to init_skill.py

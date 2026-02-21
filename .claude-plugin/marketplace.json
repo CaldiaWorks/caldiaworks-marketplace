@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "CaldiaWorks plugin marketplace",
-    "version": "0.1.7",
+    "version": "0.1.8",
     "pluginRoot": "./"
   },
   "plugins": [
@@ -18,7 +18,9 @@
         "./skills/usdm",
         "./skills/requirements-docx",
         "./skills/en-explainer",
-        "./skills/ideation"
+        "./skills/ideation",
+        "./skills/skill-creator",
+        "./skills/skill-create-workflow"
       ]
     }
   ]
