@@ -73,7 +73,7 @@ Read the file at: `~/.agents/skills/docx/docx-js.md`
 
 1. Read the style definitions from `references/docx-style-definitions.md` in this skill's directory.
 2. Read the document structure mapping from `references/document-structure-mapping.md` in this skill's directory.
-3. Generate a JavaScript file that uses the docx-js library to create the Word document.
+3. Generate a JavaScript file in a temporary working directory within the project (e.g., `.tmp/`). Do not generate scripts in the project root. Delete the temporary directory after execution.
 4. The generated script must implement:
    - Cover page with logo placeholder, title, metadata table, and confidentiality notice
    - Table of contents referencing Heading 1 through Heading 4
