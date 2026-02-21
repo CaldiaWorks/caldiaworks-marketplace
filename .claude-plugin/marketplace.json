@@ -12,7 +12,7 @@
     {
       "name": "caldiaworks",
       "source": "./",
-      "strict": false,
+      "strict": true,
       "skills": [
         "./skills/ears",
         "./skills/usdm"
