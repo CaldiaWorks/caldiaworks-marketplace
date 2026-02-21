@@ -1,4 +1,5 @@
 ---
+name: ears
 version: 0.1.0
 description: >-
   Write unambiguous specifications using EARS (Easy Approach to Requirements Syntax) patterns.
