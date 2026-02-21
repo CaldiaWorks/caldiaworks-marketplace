@@ -36,6 +36,8 @@ npx skills add CaldiaWorks/caldiaworks-marketplace -s usdm
 npx skills add CaldiaWorks/caldiaworks-marketplace -s requirements-docx
 npx skills add CaldiaWorks/caldiaworks-marketplace -s en-explainer
 npx skills add CaldiaWorks/caldiaworks-marketplace -s ideation
+npx skills add CaldiaWorks/caldiaworks-marketplace -s skill-creator
+npx skills add CaldiaWorks/caldiaworks-marketplace -s skill-create-workflow
 ```
 
 ## Available Skills
@@ -47,6 +49,8 @@ npx skills add CaldiaWorks/caldiaworks-marketplace -s ideation
 | **usdm** | Decompose requirements into structured USDM hierarchy (Requirement → Reason → Description → Specification) |
 | **requirements-docx** | Export USDM/EARS requirements from Markdown to formatted Word (.docx) files |
 | **en-explainer** | Explain English technical documents in Japanese with codebase context awareness |
+| **skill-creator** | Create new skills, improve existing skills, and measure skill performance |
+| **skill-create-workflow** | Orchestrate the full skill development lifecycle from idea to publication |
 
 ## License
 
