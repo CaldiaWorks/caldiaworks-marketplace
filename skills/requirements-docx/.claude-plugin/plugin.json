@@ -1,0 +1,6 @@
+{
+  "name": "requirements-docx",
+  "version": "0.1.0",
+  "description": "Convert USDM/EARS requirements documents to professionally formatted Word documents.",
+  "skills": ["."]
+}
