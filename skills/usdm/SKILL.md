@@ -1,4 +1,5 @@
 ---
+name: usdm
 version: 0.2.1
 description: >-
   Convert ambiguous user requests into structured USDM requirements documents.
