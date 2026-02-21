@@ -7,3 +7,4 @@ tmp**
 .agent/
 .agents/
 skills-lock.json
+.docs/
