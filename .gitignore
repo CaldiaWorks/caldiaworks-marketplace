@@ -8,3 +8,4 @@ tmp**
 .agents/
 skills-lock.json
 .docs/
+*-workspace/
