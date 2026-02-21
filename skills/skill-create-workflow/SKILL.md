@@ -17,6 +17,12 @@ This workflow combines general-purpose skills (`ideation`, `usdm`) with skill-sp
 
 Execute these steps in order. Each step produces output that feeds into the next.
 
+If the user already has artifacts from earlier steps (e.g., an idea document or a USDM requirements document), skip the completed steps and start from the appropriate point:
+
+- User has an idea document → start at Step 2
+- User has a USDM requirements document → start at Step 3
+- User has an implemented skill → start at Step 4
+
 ### Step 1: Ideation
 
 Invoke the `ideation` skill to explore and refine the skill idea.
@@ -55,7 +61,7 @@ The skill must include:
 
 ### Step 4: Marketplace Registration
 
-Register the skill in the marketplace manifest.
+Register the skill in both marketplace manifests.
 
 1. Verify `.claude-plugin/plugin.json` exists in the skill directory:
 
@@ -68,8 +74,10 @@ Register the skill in the marketplace manifest.
 }
 ```
 
-2. Add the skill path to `.claude-plugin/marketplace.json` in the `plugins[0].skills` array.
+2. Add the skill path to **both** root-level manifests:
+   - `.claude-plugin/plugin.json` — Add `"./skills/<skill-name>"` to the `skills` array
+   - `.claude-plugin/marketplace.json` — Add `"./skills/<skill-name>"` to `plugins[0].skills` array
 
-3. Bump `metadata.version` in `marketplace.json`.
+3. Bump the version in **both** files. Both must always have the same version number.
 
 4. Report completion to the user with the registered skill path.
