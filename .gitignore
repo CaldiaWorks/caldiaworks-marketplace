@@ -2,6 +2,7 @@
 **.local.**
 
 CLAUDE.md
+GEMINI.md
 tmp**
 
 .agent/
@@ -9,3 +10,4 @@ tmp**
 skills-lock.json
 .docs/
 *-workspace/
+**/evals/
