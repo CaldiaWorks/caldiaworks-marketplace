@@ -380,7 +380,7 @@ This task is pretty important (we are trying to create billions a year in econom
 
 1. **Choose workspace location**:
 
-   **Ask the user** where to put the workspace. Suggest `<skill-name>-workspace/` as a sibling to the skill directory, but let the user choose. If the workspace ends up inside a git repo, suggest adding it to `.gitignore`.
+   **Ask the user** where to put the workspace. Suggest `<skill-name>-workspace/` as a sibling to the skill directory, but let the user choose. If the workspace ends up inside a git repo, check `.gitignore` first — if an existing pattern already covers the workspace path (e.g., `*-workspace/`), do not add a duplicate entry. Only add the workspace path if no existing pattern matches.
 
 2. **Copy skill to v0**:
    ```bash
