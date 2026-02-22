@@ -71,9 +71,11 @@ Exception: Branch Cleanup does not use config values and can run without a confi
 
 Run this when no config file exists or the user explicitly asks to configure.
 
-1. Ask the user to specify the integration branch name (default: `develop`) and the release branch name (default: `main`).
-2. Ask the user to specify the commit message format (`conventional` or `freeform`) and any project-specific rules.
-3. Ask the user to specify manifest file paths to update during release, version format, and tagging convention.
+Each question must explain what the setting controls and why it matters in plain language. Do not present raw field names alone — always include a concrete explanation of the effect. Ask one topic at a time. Use the user's language when asking questions.
+
+1. Ask the user which branch aggregates feature work (default: `develop`). Then ask which branch represents production releases (default: `main`). Then ask whether the project creates a separate branch per feature (default: `true`).
+2. Ask the user whether commit messages follow a structured format with prefixes like `feat:`, `fix:` (`conventional`) or are free-form (`freeform`). Then ask for any additional project-specific commit rules.
+3. Ask the user which files contain version numbers that should be updated during a release (e.g., `package.json`, `plugin.json`). For each file, ask which field holds the version. Then ask the version format (`semver` or `calver`) and tagging convention.
 4. Validate all inputs against expected types and values.
 5. Write the config file to `.claude/git-workflow.local.md`.
 
