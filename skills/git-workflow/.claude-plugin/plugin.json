@@ -1,6 +1,6 @@
 {
   "name": "git-workflow",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Automate Git workflows driven by project-specific config.",
   "skills": ["."]
 }
