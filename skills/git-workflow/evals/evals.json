@@ -1,0 +1,56 @@
+{
+  "skill_name": "git-workflow",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "コミットして",
+      "expected_output": "Config file missing detection -> interactive setup prompt OR change analysis -> commit message generation -> user confirmation -> safe commit execution",
+      "files": [],
+      "expectations": [
+        "The skill checks for .claude/git-workflow.local.md config file existence",
+        "If no config exists, the skill initiates interactive setup before committing",
+        "The skill runs git diff --staged, git diff, and git status to analyze changes",
+        "If no changes exist, the skill informs the user and stops",
+        "The skill reads recent commit messages for style reference",
+        "The skill generates a commit message following the configured convention",
+        "The skill presents the commit message to the user for approval before executing",
+        "The skill stages files using explicit file paths, never git add -A or git add .",
+        "The skill uses HEREDOC for the commit message formatting",
+        "The skill runs git status after commit to verify success"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "PRを作成して",
+      "expected_output": "Pre-flight check for existing PR -> push with -u -> PR creation with generated title and body -> display PR URL",
+      "files": [],
+      "expectations": [
+        "The skill checks for .claude/git-workflow.local.md config file existence",
+        "The skill checks for existing PR on the current branch using gh pr list --head",
+        "If a PR already exists, the skill displays the existing PR URL",
+        "The skill pushes the current branch with -u flag if no upstream is configured",
+        "The skill collects commits since divergence from base branch using git log",
+        "The skill runs git diff against base branch to understand full scope of changes",
+        "The skill generates a PR title of 70 characters or fewer",
+        "The skill generates a PR body with Summary and Test plan sections",
+        "The skill creates the PR using gh pr create targeting the configured base branch",
+        "The skill displays the PR URL after creation"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "ブランチを整理して",
+      "expected_output": "Fetch and prune -> identify gone branches -> list and confirm -> safe deletion",
+      "files": [],
+      "expectations": [
+        "The skill checks for .claude/git-workflow.local.md config file existence",
+        "The skill runs git fetch --prune to update remote tracking state",
+        "The skill identifies local branches whose upstream is marked as [gone]",
+        "If no gone branches exist, the skill informs the user and stops",
+        "The skill lists gone branches and asks the user for confirmation before deletion",
+        "The skill uses git branch -d (safe delete) not git branch -D",
+        "The skill never force-deletes branches without explicit user request"
+      ]
+    }
+  ]
+}

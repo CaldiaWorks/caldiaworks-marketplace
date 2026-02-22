@@ -1,6 +1,6 @@
 {
   "name": "skill-create-workflow",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Orchestrate the full skill development lifecycle from idea to publication",
   "skills": ["."]
 }
