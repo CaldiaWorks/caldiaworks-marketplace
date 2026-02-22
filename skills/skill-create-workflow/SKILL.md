@@ -119,6 +119,8 @@ Before reporting completion, verify all artifacts are consistent.
 After all PRs are merged and the workflow is complete, clean up the working environment.
 
 1. Switch back to the `develop` branch and pull the latest changes.
-2. Run `git fetch --prune` to update remote tracking state.
-3. Delete local feature branches created during this workflow whose upstream is gone.
-4. Verify the working tree is clean with `git status`.
+2. Delete remote feature branches created during this workflow using `git push origin --delete <branch>`.
+3. Run `git fetch --prune` to update remote tracking state.
+4. Delete local feature branches created during this workflow whose upstream is gone.
+5. Delete the eval workspace directory if it exists (`skills/<skill-name>-workspace/`).
+6. Verify the working tree is clean with `git status` and `git branch -a`.
