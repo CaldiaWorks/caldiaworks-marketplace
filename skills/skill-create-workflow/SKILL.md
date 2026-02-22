@@ -113,3 +113,12 @@ Before reporting completion, verify all artifacts are consistent.
 3. Every skill listed in the manifests exists under `skills/<name>/` with a `SKILL.md` and `.claude-plugin/plugin.json`.
 4. Every skill listed in the manifests has an entry in `README.md` (install command + table row).
 5. No unintended files were added to `.gitignore` — check that existing patterns are not duplicated.
+
+### Step 7: Branch Cleanup
+
+After all PRs are merged and the workflow is complete, clean up the working environment.
+
+1. Switch back to the `develop` branch and pull the latest changes.
+2. Run `git fetch --prune` to update remote tracking state.
+3. Delete local feature branches created during this workflow whose upstream is gone.
+4. Verify the working tree is clean with `git status`.
