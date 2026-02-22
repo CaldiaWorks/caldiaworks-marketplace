@@ -39,6 +39,7 @@ npx skills add CaldiaWorks/caldiaworks-marketplace -s ideation
 npx skills add CaldiaWorks/caldiaworks-marketplace -s skill-creator
 npx skills add CaldiaWorks/caldiaworks-marketplace -s skill-create-workflow
 npx skills add CaldiaWorks/caldiaworks-marketplace -s deep-research
+npx skills add CaldiaWorks/caldiaworks-marketplace -s git-workflow
 ```
 
 ## Available Skills
@@ -53,6 +54,7 @@ npx skills add CaldiaWorks/caldiaworks-marketplace -s deep-research
 | **skill-creator** | Create new skills, improve existing skills, and measure skill performance |
 | **skill-create-workflow** | Orchestrate the full skill development lifecycle from idea to publication |
 | **deep-research** | Conduct deep research through structured investigation design: question decomposition, plan approval, iterative exploration, and synthesis |
+| **git-workflow** | Automate Git workflows (commit, push, PR, release, branch management) driven by a project-specific config file |
 
 ## License
 

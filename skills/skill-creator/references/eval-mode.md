@@ -51,7 +51,7 @@ This ensures you know the expected structure for:
 **Choose workspace location:**
 
 1. **Suggest default**: `<skill-name>-workspace/` as a sibling to the skill directory
-2. **Ask the user** using AskUserQuestion — if the workspace is inside a git repo, suggest adding it to `.gitignore`
+2. **Ask the user** using AskUserQuestion — if the workspace is inside a git repo, check `.gitignore` first. If an existing pattern already covers the workspace path (e.g., `*-workspace/`), do not add a duplicate entry. Only add the workspace path if no existing pattern matches.
 3. **Create the workspace directory** once confirmed
 
 ## Step 1: Check Dependencies
