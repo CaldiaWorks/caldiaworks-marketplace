@@ -220,6 +220,7 @@ Based on interview, fill:
 
 - **name**: Skill identifier
 - **description**: When to trigger, what it does. This is the primary triggering mechanism - include both what the skill does AND specific contexts for when to use it. All "when to use" info goes here, not in the body. Note: currently Claude has a tendency to "undertrigger" skills -- to not use them when they'd be useful. To combat this, please make the skill descriptions a little bit "pushy". So for instance, instead of "How to build a simple fast dashboard to display internal Anthropic data.", you might write "How to build a simple fast dashboard to display internal Anthropic data. Make sure to use this skill whenever the user mentions dashboards, data visualization, internal metrics, or wants to display any kind of company data, even if they don't explicitly ask for a 'dashboard.'"
+  **Format constraint**: The description MUST be a single-line value -- either plain (`description: Some text`) or double-quoted (`description: "Some text"`). NEVER use YAML block scalar syntax (`>`, `>-`, `|`, `|-`) because many marketplace parsers do not expand them and will display the raw indicator character instead of the description text. Also avoid special Unicode characters like `→` or `—` in the description; use ASCII equivalents (`->`, `--`) instead.
 - **compatibility**: Required tools, dependencies (optional, rarely needed)
 
 ### Skill Writing Guide

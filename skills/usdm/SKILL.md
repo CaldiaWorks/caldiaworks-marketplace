@@ -1,7 +1,7 @@
 ---
 name: usdm
 version: 0.2.2
-description: "Convert ambiguous user requests into structured USDM requirements documents. Decomposes requirements into Requirement → Reason → Description → Specification hierarchy. Integrates with GitHub Issues, Asana, and Jira tickets as input sources. Use when: create requirements, write requirements document, USDM, decompose requirements, requirements definition, 要件定義, 要件を整理, 要件分解."
+description: "Convert ambiguous user requests into structured USDM requirements documents. Decomposes requirements into Requirement -> Reason -> Description -> Specification hierarchy. Integrates with GitHub Issues, Asana, and Jira tickets as input sources. Use when: create requirements, write requirements document, USDM, decompose requirements, requirements definition, 要件定義, 要件を整理, 要件分解."
 ---
 
 # USDM Requirements Decomposition
