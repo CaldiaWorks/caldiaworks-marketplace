@@ -165,20 +165,28 @@ Execute in this order. Confirm with the user before each destructive step.
 - Verify there are no uncommitted changes.
 - Pull the latest changes on both integration and release branches.
 
-**2. Merge**
+**2. Skill version verification**
+
+- Compare the integration branch against the release branch (`git diff <release>..<integration> --name-only`) to identify all changed files.
+- For each modified file under `skills/*/`, identify the affected skill directories.
+- For each affected skill, verify that `skills/<skill-name>/.claude-plugin/plugin.json` has its `version` field bumped compared to the release branch version.
+- Verify that the root manifest files (`.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`) have their version bumped if any skill was added, removed, or modified.
+- IF any versions are not bumped, THEN list the files that need updating and ask the user whether to bump them now or abort. If the user agrees, bump the versions, stage, and commit to the integration branch before proceeding.
+
+**3. Merge**
 
 - Switch to the release branch.
 - Merge the integration branch.
 - IF conflicts occur, THEN abort the merge, list conflicting files, and instruct the user to resolve manually.
 
-**3. Version and tag**
+**4. Version and tag**
 
 - Determine the next version based on the config's version format and the most recent existing tag.
 - Present the proposed version to the user and allow override.
 - IF manifest files are configured, THEN update the version field in each file, stage, and commit.
 - Create an annotated git tag.
 
-**4. Push**
+**5. Push**
 
 - Confirm with the user before pushing.
 - Push the release branch and tags to origin.
