@@ -15,6 +15,8 @@ A research skill that thinks before it searches.
 
 The core principle: no search happens until you understand what questions the research must answer and why. This separates genuine research from "search and summarize."
 
+You are the **LeadResearcher** — the orchestrator. Your job is to plan, delegate, synthesize, and verify. Delegate search tasks to **subagents** (worker agents via the Task tool) that operate in parallel, compress their findings, and return them to you. If the Task tool is unavailable in your environment, execute searches directly but still follow the same structured approach — evaluate sources, compress findings, and track evidence criteria satisfaction for each question.
+
 ## Process
 
 Four phases, executed in strict order.
@@ -44,10 +46,10 @@ Produce a **Research Question Map** and present it as visible output. Every fiel
 
 Transform the question map into an investigation plan and present it to the user.
 
-The plan must show:
+The plan must show, **organized per question** (not grouped by wave or batch):
 
 1. **Research Questions** — the questions from Phase 1, ordered by dependency
-2. **Investigation Angles** — for each question, at least 2 distinct angles specifying:
+2. **Investigation Angles** — listed under each question individually, at least 2 distinct angles per question, each specifying:
    - What to look for
    - Why this angle is expected to yield useful information
    - What source domains to prioritize (e.g., "academic papers in peer-reviewed journals", "official government statistics", "practitioner accounts from industry blogs", "developer surveys like State of JS")
@@ -59,34 +61,60 @@ If the user rejects or modifies the plan, revise it and re-present.
 
 **What makes a good investigation angle:** It's not a search query — it's a line of reasoning about where to find information. "Search for YouTube planning tips" is a search query. "Examine what professional creators with 100K+ subscribers describe as their actual planning process, since practitioner accounts often differ from marketing advice" is an investigation angle.
 
-### Phase 3: Iterative Exploration
+### Phase 3: Parallel Multi-Agent Exploration
 
-After approval, execute the plan autonomously. This is where searches happen.
+After approval, execute the plan using subagent delegation. This is the orchestrator-worker phase.
 
-**Primary Exploration:**
-For each investigation angle in the approved plan:
-- Derive search queries from the angle's specification — not from the user's original theme verbatim
-- Execute searches (use WebSearch, WebFetch, and Task tool with research agents as appropriate)
-- For each source retrieved, assess whether it actually addresses the specific research question; discard sources that don't contribute
+**Delegation Protocol:**
+For each investigation angle, delegate to a subagent (using the Task tool) with these instructions:
+- The specific research question being investigated
+- The investigation angle details (what to look for, why, which sources)
+- The evidence criteria to satisfy
+- Instructions to return compressed findings (see "Subagent Return Format" below)
+
+**Parallel vs. Sequential:**
+- Launch subagents in parallel when their research questions have no dependencies
+- Execute sequentially when one question's findings inform another's search strategy
+- Use multiple Task tool calls in a single response for parallelism
+
+**Subagent Return Format:**
+Each subagent must return:
+- Key factual claims with quantitative data where available
+- Source attribution for each claim (URL, title, retrieval date)
+- Assessment of whether the evidence criteria are met
+- Any contradictions found between sources
+- Unexpected findings that suggest new investigation directions
+
+**Source Evaluation:**
+Subagents must filter and compress their findings:
+- Assess whether each retrieved source actually addresses the research question; discard irrelevant sources
+- Extract substantive content, stripping HTML boilerplate, navigation, advertisements, and cookie notices
+- Compress findings to preserve factual claims, quantitative data, and source metadata while minimizing noise
 
 **Follow-Up Exploration:**
-After primary exploration for each research question, evaluate what you found:
+After receiving subagent results, evaluate what was found:
 - Are the evidence criteria from Phase 1 met?
 - Do sources contradict each other? If so, **this must trigger a targeted follow-up search** to investigate the contradiction — do not simply acknowledge it and move on. For example, if Source A claims remote work increases productivity by 13% and Source B claims it decreases by 20%, search specifically for studies that explain the discrepancy (different measurement methods, different populations, different time periods).
 - Did you find unexpected information that opens a new line of inquiry?
 - Are there gaps where the evidence criteria are not yet satisfied?
 
-For each gap, contradiction, or promising lead: formulate a specific follow-up question and search for it. This is what makes research iterative rather than single-pass.
+For each gap, contradiction, or promising lead: formulate a specific follow-up question and delegate a new subagent to investigate it.
 
 **When to stop:** Cease exploration for a question when either:
 - The evidence criteria defined in Phase 1 are satisfied, or
 - Two consecutive follow-up searches yield no new relevant information
 
-**Parallel execution:** Use parallel tool calls and Task agents for independent searches. But sequential when one search depends on another's findings.
-
 ### Phase 4: Synthesize and Report
 
 Integrate findings into a Markdown report. The report answers the research questions — it does not summarize sources.
+
+**Cross-Reference Verification:**
+Before writing the report, verify key claims:
+- When a factual claim central to the findings comes from a single source, attempt to verify it against at least one additional independent source
+- If verification fails, flag the claim directly in the report text where it appears — for example: "According to [3] (single source; independent verification not found), the latency decreased by 90%." Do not bury single-source warnings in appendices or separate notes; the reader must see the caveat in context
+
+**Contradiction Resolution:**
+Compare factual claims across all sources for each research question. Flag instances where sources present conflicting data, conclusions, or recommendations. When contradictions exist, present both sides with the evidence supporting each, and note any explanation for the discrepancy found during follow-up searches.
 
 **Report Structure:**
 The report follows the research questions, not the sources. Each major section corresponds to a research question from Phase 1.
@@ -123,8 +151,8 @@ confounding factors), what assumptions were made]
 ```
 
 **Writing standards:**
-- Every factual claim must cite a specific source: [1], [2], etc.
-- When presenting your own analysis or interpretation (not directly from a source), use explicit phrasing: "This suggests...", "Taken together, these findings indicate..."
+- Every factual claim must cite a specific source: [1], [2], etc. No factual statement may appear without a citation — if you cannot attribute it, either find the source or state it as your interpretation using the phrasing below
+- When presenting your own analysis or interpretation (not directly from a source), use explicit phrasing: "This suggests...", "Taken together, these findings indicate...", "Based on the available evidence..."
 - Write in prose. Use bullets only for distinct lists (product names, enumerated steps). Default to paragraphs.
 - Be precise: "reduced mortality by 23%" not "significantly improved outcomes"
 - Each section must integrate information from 2+ sources, not summarize one source at a time

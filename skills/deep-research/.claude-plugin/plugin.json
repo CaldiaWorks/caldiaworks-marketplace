@@ -1,6 +1,6 @@
 {
   "name": "deep-research",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Conduct deep research through structured investigation design: question decomposition, plan approval, iterative exploration, and synthesis.",
   "skills": ["."]
 }
