@@ -103,6 +103,7 @@ Execute in this order:
 
 - Read the 5 most recent commit messages to match the repository's existing style.
 - Generate a commit message draft based on the diff content and the commit convention in the config.
+- IF the current branch name matches `feature/<number>-*` or `fix/<number>-*`, THEN include `Closes #<number>` in the commit message body so that the related issue is automatically closed when merged to the default branch.
 - Present the message to the user and wait for approval or modification.
 
 **5. Commit execution**
