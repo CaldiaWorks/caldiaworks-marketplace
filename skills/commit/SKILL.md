@@ -1,6 +1,6 @@
 ---
 name: commit
-version: 0.2.0
+version: 0.3.0
 description: "Create focused git commits with change review, selective staging, and auto-drafted messages. Use when: commit, git commit, save changes, commit my work, make a commit, stage and commit, review changes before committing. Also use when the user says /commit or asks to commit specific files."
 ---
 
@@ -22,25 +22,24 @@ Show the user what has changed so they can decide what to commit.
 
 ### Step 2: Stage Files
 
-Help the user select which files to include in this commit.
+Determine which files to include in this commit.
 
 - If the user has already specified files to commit, stage those files with `git add`.
-- If files are already staged and the user is satisfied, skip to Step 3.
-- If no files are staged, ask the user which files to stage. Present the list of changed files and let them choose.
+- If files are already staged, skip to Step 3.
+- If no files are staged, stage all changed files automatically. If the user specified particular files, stage only those.
 
 Stage specific files by name -- avoid `git add -A` or `git add .` as they can accidentally include sensitive files or unintended changes.
 
 ### Step 3: Commit
 
-Draft a commit message and create the commit after user approval.
+Draft a commit message and create the commit.
 
 1. Analyze the staged diff to draft a concise commit message:
    - First line: imperative summary under 72 characters
    - Blank line, then body with context if the change is non-trivial
    - Follow repository conventions if visible from recent `git log`
-2. Present the draft message to the user. They may approve, edit, or rewrite it.
-3. Create the commit with the approved message.
-4. Display the resulting commit hash and message.
+2. Create the commit with the drafted message.
+3. Display the resulting commit hash and message.
 
 Use a HEREDOC to pass the commit message to avoid shell escaping issues:
 ```bash

@@ -1,6 +1,6 @@
 ---
 name: pull-request
-version: 0.2.0
+version: 0.3.0
 description: "Create GitHub pull requests with readiness checks, auto-drafted titles and descriptions, and remote push handling. Use when: create PR, pull request, open PR, submit PR, create pull request, PR for review, push and PR, pull-request, /pull-request."
 ---
 
@@ -21,9 +21,9 @@ Verify the branch is ready for a pull request.
 3. If the current branch is not pushed to the remote, push it with tracking: `git push -u origin <branch>`.
 4. Check if a PR already exists for the current branch using `gh pr view`. If one exists, display the existing PR URL and ask the user whether to update it or abort.
 
-### Step 2: Draft PR Content
+### Step 2: Draft and Create PR
 
-Generate a title and body from the commit history.
+Generate a title and body from the commit history, then create the PR.
 
 1. Display the commit log between the base branch and HEAD: `git log --oneline <base>..HEAD`.
 2. Display the full diff: `git diff <base>...HEAD`.
@@ -31,18 +31,14 @@ Generate a title and body from the commit history.
    - Title: concise summary of the changes in imperative form
    - Body: structured summary with sections as appropriate
    - Follow repository conventions if visible from recent PRs
-4. Present the draft to the user. They may approve, edit, or rewrite it.
-
-### Step 3: Create PR
-
-1. Create the pull request on confirmation:
+4. Create the pull request:
    ```bash
    gh pr create --title "<title>" --body "$(cat <<'EOF'
    <body>
    EOF
    )"
    ```
-2. Display the PR number and URL.
+5. Display the PR number and URL.
 
 ### Error Handling
 
