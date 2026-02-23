@@ -83,12 +83,11 @@ Invoke the `skill-creator` skill.
 
 - Input: The USDM requirements document from Step 5
 - Output: Complete skill directory under `skills/<skill-name>/`
-- The skill must include `SKILL.md` with frontmatter and `.claude-plugin/plugin.json`
+- The skill must include `SKILL.md` with frontmatter
 
 After `skill-creator` completes:
-1. Verify the new skill's `.claude-plugin/plugin.json` exists.
-2. Add the skill path to both `.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`.
-3. Bump the version in both manifest files to the same value.
+1. Add the skill path to both `.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`.
+2. Bump the version in both manifest files to the same value.
 
 ### Step 7: Commit
 

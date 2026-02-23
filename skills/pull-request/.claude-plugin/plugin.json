@@ -1,6 +1,0 @@
-{
-  "name": "pull-request",
-  "version": "0.2.0",
-  "description": "Create GitHub pull requests with readiness checks, auto-drafted titles and descriptions, and remote push handling.",
-  "skills": ["."]
-}

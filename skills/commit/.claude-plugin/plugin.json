@@ -1,6 +1,0 @@
-{
-  "name": "commit",
-  "version": "0.2.0",
-  "description": "Create focused git commits with change review, selective staging, and auto-drafted messages.",
-  "skills": ["."]
-}
