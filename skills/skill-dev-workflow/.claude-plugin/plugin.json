@@ -1,0 +1,6 @@
+{
+  "name": "skill-dev-workflow",
+  "version": "0.1.0",
+  "description": "Orchestrate the 8-step skill development lifecycle for the CaldiaWorks Skills repository.",
+  "skills": ["."]
+}

@@ -1,6 +1,6 @@
 ---
 name: usdm
-version: 0.2.2
+version: 0.3.0
 description: "Convert ambiguous user requests into structured USDM requirements documents. Decomposes requirements into Requirement -> Reason -> Description -> Specification hierarchy. Integrates with GitHub Issues, Asana, and Jira tickets as input sources. Use when: create requirements, write requirements document, USDM, decompose requirements, requirements definition, 要件定義, 要件を整理, 要件分解."
 ---
 
@@ -122,9 +122,7 @@ Report any issues found and fix them.
 
 ### Step 5: Output
 
-Generate one or both of the following outputs based on user preference:
-
-#### Option A: Markdown Document (default)
+Generate a Markdown document:
 
 1. Apply the template from `templates/usdm-requirements.md`.
 2. Fill in all metadata fields (document ID, date, author, stakeholders).
@@ -132,16 +130,6 @@ Generate one or both of the following outputs based on user preference:
 4. Generate the traceability matrix.
 5. List any open questions discovered during analysis.
 6. Save the document with the naming convention: `REQ-DOC-{YYYYMMDD}-{NNN}-{short-name}.md`
-
-#### Option B: GitHub Issues
-
-Create Issues that mirror the USDM hierarchy using sub-issues. See `references/github-issues-mapping.md` for the full mapping guide.
-
-1. Create `usdm:req` and `usdm:spec` labels if they do not exist.
-2. For each top-level REQ, create an Issue with label `usdm:req`.
-3. For each sub-requirement, create a sub-issue under the parent REQ Issue with label `usdm:req`.
-4. For each SPEC, create a sub-issue under its parent REQ Issue with label `usdm:spec`.
-5. Verify the hierarchy with `gh sub-issue list`.
 
 ## Writing Rules
 
@@ -174,6 +162,6 @@ These words are **prohibited** in specifications. See `references/usdm-writing-g
 
 - `references/usdm-writing-guide.md` — Naming conventions, quality criteria, review checklist
 - `references/hidden-verb-discovery.md` — Techniques for uncovering hidden requirements
-- `references/github-issues-mapping.md` — GitHub Issues USDM mapping and sub-issue workflow
+- `references/github-issues-mapping.md` — GitHub Issues USDM mapping reference (used by downstream skills such as `issue-create`)
 - `examples/usdm-example.md` — Complete before/after transformation example
 - `templates/usdm-requirements.md` — Output document template
