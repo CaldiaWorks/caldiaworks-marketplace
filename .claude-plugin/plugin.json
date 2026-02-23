@@ -1,6 +1,6 @@
 {
   "name": "caldiaworks-marketplace",
-  "version": "0.1.18",
+  "version": "0.1.19",
   "description": "CaldiaWorks plugin marketplace",
   "skills": [
     "./skills/ears",
@@ -11,6 +11,7 @@
     "./skills/skill-creator",
     "./skills/skill-create-workflow",
     "./skills/deep-research",
-    "./skills/commit"
+    "./skills/commit",
+    "./skills/issue-create"
   ]
 }
