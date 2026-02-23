@@ -1,6 +1,6 @@
 ---
 name: pull-request
-version: 0.1.0
+version: 0.2.0
 description: "Create GitHub pull requests with readiness checks, auto-drafted titles and descriptions, and remote push handling. Use when: create PR, pull request, open PR, submit PR, create pull request, PR for review, push and PR, pull-request, /pull-request."
 ---
 
@@ -47,6 +47,13 @@ Generate a title and body from the commit history.
 ### Error Handling
 
 If PR creation fails, display the error message returned by `gh pr create`.
+
+## Before Finishing
+
+After creating the PR, review it from a reviewer's perspective:
+
+- **Understandable?** Can a reviewer who has no context about the conversation understand what this PR does and why, from the title and body alone?
+- **Complete?** Does the diff include all intended changes? Check `git status` for unstaged changes that may have been missed.
 
 ## Constraints
 

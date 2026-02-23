@@ -1,6 +1,6 @@
 ---
 name: issue-create
-version: 0.1.0
+version: 0.2.0
 description: "Create GitHub Issues from user input or USDM requirements documents. Standalone mode guides through title, body, and labels. USDM mode creates a hierarchy of issues from requirements with specifications in the issue body. Use when: create issue, new issue, GitHub issue, open issue, file issue, create issues from requirements, USDM to issues, issue-create, /issue-create."
 ---
 
@@ -115,6 +115,13 @@ After all issues are created, verify the hierarchy with `gh sub-issue list` on t
 - **Process top-down**: always create parent issues before children.
 
 See `references/usdm-issue-mapping.md` for the full mapping guide.
+
+## Before Finishing
+
+After creating issues, review each one from a reader's perspective:
+
+- **Self-contained?** Can someone understand this issue without access to the conversation or source document? If the issue body lacks context (reason, scope, acceptance criteria), add it before moving on.
+- **Source traceable?** Does every issue link back to its origin (USDM document, idea document, or conversation context)? A reader should be able to find the full context if they need it.
 
 ## Constraints
 
