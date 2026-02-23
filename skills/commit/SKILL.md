@@ -1,6 +1,6 @@
 ---
 name: commit
-version: 0.1.0
+version: 0.2.0
 description: "Create focused git commits with change review, selective staging, and auto-drafted messages. Use when: commit, git commit, save changes, commit my work, make a commit, stage and commit, review changes before committing. Also use when the user says /commit or asks to commit specific files."
 ---
 
@@ -53,6 +53,12 @@ EOF
 ### Error Recovery
 
 **Pre-commit hook failure**: If a pre-commit hook fails, display the hook's error output. After the user fixes the issue, create a new commit -- never use `--amend`, because the failed commit did not happen and amending would modify the previous (unrelated) commit.
+
+## Before Finishing
+
+After creating the commit, check for leftover changes:
+
+- **Remaining changes?** Run `git status` after the commit. If unstaged changes remain, inform the user -- they may be related changes that should be included, or incidental changes that need a plan for when they will be committed.
 
 ## Constraints
 

@@ -1,6 +1,6 @@
 ---
 name: planning
-version: 0.1.0
+version: 0.2.0
 description: "Plan work by analyzing GitHub Issues, identifying dependencies, proposing execution order, and defining work units that map to feature branches. Outputs a persistent plan document. Use when: plan work, planning, prioritize issues, organize issues, create a plan, work breakdown, define work units, what should I work on first, /planning."
 ---
 
@@ -81,6 +81,13 @@ Work Unit 1: {description} (#{number}).
 ```
 
 After the plan is finalized, display the first work unit and its associated issues as the next action.
+
+## Before Finishing
+
+After generating the plan document, verify it stands on its own:
+
+- **Survives context loss?** If the conversation is lost and only the plan file remains, can someone resume work from it? Every work unit should reference concrete issue numbers, not just descriptions.
+- **Actionable?** Does each work unit have enough detail to create a branch and start working without re-reading the full issue thread?
 
 ## Constraints
 

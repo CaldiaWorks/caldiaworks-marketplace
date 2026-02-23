@@ -1,6 +1,6 @@
 ---
 name: skill-dev-workflow
-version: 0.2.0
+version: 0.3.0
 description: "Orchestrate the 9-step skill development lifecycle for the CaldiaWorks Skills repository. Guides through ideation, issue creation, planning, branch creation, requirements definition, skill implementation, commit, pull request, and post-merge issue cleanup. Use when: skill development workflow, develop a skill end-to-end, skill-dev-workflow, /skill-dev-workflow, create and publish a skill."
 ---
 
@@ -125,6 +125,14 @@ Throughout the workflow, keep the plan document up to date:
 | Work unit begins | Status: `Pending` -> `In Progress` |
 | Branch created | Branch: `TBD` -> branch name |
 | PR merged or user confirms completion | Status: `In Progress` -> `Done` |
+
+## Before Finishing
+
+After the workflow completes (or when the user stops at any step), verify nothing is left behind:
+
+- **Open issues?** Are there sub-issues under the parent issue that should be closed? Step 9 handles this after merge, but if the workflow is interrupted earlier, flag any open issues to the user.
+- **Uncommitted changes?** Run `git status` to check for changes that were not included in the final commit.
+- **Plan up to date?** Does the plan document reflect the actual state of all work units (Status and Branch columns)?
 
 ## Constraints
 
