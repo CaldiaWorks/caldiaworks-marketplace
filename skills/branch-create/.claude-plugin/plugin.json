@@ -1,0 +1,6 @@
+{
+  "name": "branch-create",
+  "version": "0.1.0",
+  "description": "Create feature branches linked to issues with consistent naming conventions.",
+  "skills": ["."]
+}

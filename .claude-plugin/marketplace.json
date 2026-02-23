@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "CaldiaWorks plugin marketplace",
-    "version": "0.1.19",
+    "version": "0.1.20",
     "pluginRoot": "./"
   },
   "plugins": [
@@ -23,7 +23,8 @@
         "./skills/skill-create-workflow",
         "./skills/deep-research",
         "./skills/commit",
-        "./skills/issue-create"
+        "./skills/issue-create",
+        "./skills/branch-create"
       ]
     }
   ]
