@@ -1,6 +1,6 @@
 ---
 name: issue-create
-version: 0.2.0
+version: 0.3.0
 description: "Create GitHub Issues from user input or USDM requirements documents. Standalone mode guides through title, body, and labels. USDM mode creates a hierarchy of issues from requirements with specifications in the issue body. Use when: create issue, new issue, GitHub issue, open issue, file issue, create issues from requirements, USDM to issues, issue-create, /issue-create."
 ---
 
@@ -25,16 +25,15 @@ Create a single issue through dialogue with the user.
 2. Accept an optional issue body describing the issue in detail.
 3. Accept optional labels for the issue.
 
-If the user provides all details upfront (e.g., "create an issue titled X about Y"), skip the interactive prompts and proceed to confirmation.
+If the user provides all details upfront (e.g., "create an issue titled X about Y"), skip the interactive prompts and proceed to creation.
 
-### Step 2: Confirm and Create
+### Step 2: Create Issue
 
-1. Present the issue details (title, body, labels) for user confirmation.
-2. On confirmation, create the issue:
+1. Create the issue immediately after collecting details:
    ```bash
    gh issue create --title "<title>" --label "<labels>" --body "<body>"
    ```
-3. Display the created issue number and URL.
+2. Display the created issue number and URL.
 
 ### Error Handling
 
@@ -59,7 +58,7 @@ Create a hierarchy of issues from a USDM requirements document. This mode is tri
    - Description
    - Child specifications (SPEC) belonging to that requirement
    - Parent requirement (if it is a sub-requirement)
-4. Present a summary of extracted requirements to the user for confirmation.
+4. Display a summary of the extraction: total number of requirements and the list of REQ IDs. Proceed to creation unless the user explicitly aborts.
 
 ### Step 2: Create Issues Top-Down
 
@@ -127,4 +126,4 @@ After creating issues, review each one from a reader's perspective:
 
 - Do not create issues outside the current repository.
 - Do not modify existing issues unless explicitly part of the USDM hierarchy creation.
-- Always confirm with the user before creating issues (in standalone mode) or before starting batch creation (in USDM mode).
+- In USDM mode, display the count and REQ IDs before batch creation. Proceed unless the user aborts.

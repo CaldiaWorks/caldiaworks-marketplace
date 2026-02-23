@@ -1,6 +1,6 @@
 ---
 name: branch-create
-version: 0.1.0
+version: 0.2.0
 description: "Create feature branches linked to issues with consistent naming conventions. Generates branch names from issue numbers and descriptions, creates the branch, and checks it out. Use when: create branch, new branch, feature branch, branch for issue, start working on issue, branch-create, /branch-create."
 ---
 
@@ -12,11 +12,11 @@ Create a feature branch linked to an issue with a consistent naming convention. 
 
 ### Step 1: Collect Input
 
-Gather the issue number and a short description for the branch name.
+Gather the issue number for the branch name.
 
 1. Ask the user for the issue number. If provided as an argument, use it directly.
 2. If the issue number is provided, verify it exists with `gh issue view <number>`. If the issue does not exist, inform the user and stop.
-3. Ask for a short description (a few words summarizing the work). If the issue title is available, suggest a description derived from it.
+3. Derive a short description from the issue title automatically. Only ask the user for a description if the issue has no title.
 
 ### Step 2: Generate Branch Name
 
@@ -27,7 +27,6 @@ Generate the branch name following the project's naming convention.
    - Replace spaces and underscores with hyphens
    - Remove special characters
    - Collapse consecutive hyphens
-3. Present the generated branch name to the user for confirmation.
 
 If the project has a different convention documented (e.g., in CLAUDE.md or CONTRIBUTING.md), follow that convention instead.
 

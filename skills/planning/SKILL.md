@@ -1,6 +1,6 @@
 ---
 name: planning
-version: 0.2.0
+version: 0.3.0
 description: "Plan work by analyzing GitHub Issues, identifying dependencies, proposing execution order, and defining work units that map to feature branches. Outputs a persistent plan document. Use when: plan work, planning, prioritize issues, organize issues, create a plan, work breakdown, define work units, what should I work on first, /planning."
 ---
 
@@ -25,26 +25,24 @@ Works in any project with GitHub Issues.
 If reading issues from GitHub fails, display the error message and stop.
 If the specified parent issue has no sub-issues, inform the user there are no issues to plan.
 
-### Step 2: Identify Dependencies and Propose Order
+### Step 2: Identify Dependencies and Determine Order
 
 1. Analyze dependencies between issues based on:
    - Explicit references in issue bodies (e.g., "depends on #X", "blocked by #X")
    - Hierarchy: parent issues depend on child issues being resolved
    - Content: issues that produce artifacts needed by other issues
-2. Propose an execution order based on dependencies and priorities.
-3. Present the proposed order to the user for confirmation or modification.
+2. Determine an execution order based on dependencies and priorities.
 
-When proposing order, consider practical benefits: foundational tools first (e.g., a commit skill before other skills, so it can be used during their development).
+When determining order, consider practical benefits: foundational tools first (e.g., a commit skill before other skills, so it can be used during their development).
 
 ### Step 3: Define Work Units
 
-1. Propose groupings of related issues into work units. Each work unit:
-   - Corresponds to a single feature branch
-   - Contains issues that are closely related and make sense to implement together
-   - Has a clear, concise description
-2. Present the proposed work units to the user for confirmation or modification.
+Group related issues into work units. Each work unit:
+- Corresponds to a single feature branch
+- Contains issues that are closely related and make sense to implement together
+- Has a clear, concise description
 
-A work unit may contain a single issue or multiple related issues. The user decides the granularity.
+A work unit may contain a single issue or multiple related issues.
 
 ### Step 4: Output Plan Document
 

@@ -1,6 +1,6 @@
 ---
 name: skill-dev-workflow
-version: 0.3.0
+version: 0.4.0
 description: "Orchestrate the 9-step skill development lifecycle for the CaldiaWorks Skills repository. Guides through ideation, issue creation, planning, branch creation, requirements definition, skill implementation, commit, pull request, and post-merge issue cleanup. Use when: skill development workflow, develop a skill end-to-end, skill-dev-workflow, /skill-dev-workflow, create and publish a skill."
 ---
 
@@ -12,7 +12,7 @@ Orchestrate the full lifecycle of creating a skill for the CaldiaWorks marketpla
 
 Each invoked skill defines its own internal steps. **Every internal step of every invoked skill must be executed in order without exception.** Do not skip, merge, or silently omit any step -- even if the step seems trivial or the answer seems obvious.
 
-If a step requires user input or confirmation, ask. If a step produces output, present it. Violating this rule degrades quality and erodes user trust.
+Only ask the user for input that cannot be derived from available context (issue titles, document content, git history, etc.). If a step produces output, present it. Violating this rule degrades quality and erodes user trust.
 
 ## Partial Workflow Entry
 
@@ -29,7 +29,7 @@ Ask the user what artifacts they already have before starting.
 
 ## Workflow Steps
 
-Execute these 9 steps in order. After each step completes, ask the user whether to proceed to the next step.
+Execute these 9 steps in order. Proceed automatically from one step to the next.
 
 ### Step 1: Ideation
 
