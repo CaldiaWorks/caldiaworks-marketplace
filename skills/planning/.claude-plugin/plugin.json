@@ -1,6 +1,0 @@
-{
-  "name": "planning",
-  "version": "0.2.0",
-  "description": "Plan work by analyzing GitHub Issues, identifying dependencies, and defining work units.",
-  "skills": ["."]
-}

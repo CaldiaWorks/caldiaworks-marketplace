@@ -1,6 +1,0 @@
-{
-  "name": "issue-create",
-  "version": "0.2.0",
-  "description": "Create GitHub Issues from user input or USDM requirements documents.",
-  "skills": ["."]
-}
