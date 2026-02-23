@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "CaldiaWorks plugin marketplace",
-    "version": "0.1.21",
+    "version": "0.1.22",
     "pluginRoot": "./"
   },
   "plugins": [
@@ -25,7 +25,8 @@
         "./skills/commit",
         "./skills/issue-create",
         "./skills/branch-create",
-        "./skills/pull-request"
+        "./skills/pull-request",
+        "./skills/planning"
       ]
     }
   ]
