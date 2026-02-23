@@ -1,7 +1,7 @@
 ---
 name: skill-dev-workflow
-version: 0.1.0
-description: "Orchestrate the 8-step skill development lifecycle for the CaldiaWorks Skills repository. Guides through ideation, issue creation, planning, branch creation, requirements definition, skill implementation, commit, and pull request. Use when: skill development workflow, develop a skill end-to-end, skill-dev-workflow, /skill-dev-workflow, create and publish a skill."
+version: 0.2.0
+description: "Orchestrate the 9-step skill development lifecycle for the CaldiaWorks Skills repository. Guides through ideation, issue creation, planning, branch creation, requirements definition, skill implementation, commit, pull request, and post-merge issue cleanup. Use when: skill development workflow, develop a skill end-to-end, skill-dev-workflow, /skill-dev-workflow, create and publish a skill."
 ---
 
 # Skill Development Workflow
@@ -29,7 +29,7 @@ Ask the user what artifacts they already have before starting.
 
 ## Workflow Steps
 
-Execute these 8 steps in order. After each step completes, ask the user whether to proceed to the next step.
+Execute these 9 steps in order. After each step completes, ask the user whether to proceed to the next step.
 
 ### Step 1: Ideation
 
@@ -105,6 +105,16 @@ Invoke the `pull-request` skill.
 - Output: PR number and URL
 
 After the PR is merged or the user confirms completion, update the plan document: set the work unit's Status to `Done`.
+
+### Step 9: Issue Cleanup
+
+After the PR is merged, close all remaining open sub-issues under the parent issue.
+
+1. List open sub-issues of the parent issue: `gh sub-issue list <parent-issue-number>`
+2. For each open sub-issue, recursively list and close its own sub-issues first (bottom-up).
+3. Close each open sub-issue with a comment referencing the merged PR.
+
+This is necessary because `Resolves #N` in commit messages only auto-closes the directly referenced issues. Sub-issues created from USDM requirements (sub-REQs) are not auto-closed and must be closed explicitly.
 
 ## Plan Progress Tracking
 
