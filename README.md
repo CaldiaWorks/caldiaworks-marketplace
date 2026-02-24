@@ -1,3 +1,5 @@
+[![Claude Code Skill](https://img.shields.io/badge/Claude%20Code-Skill-purple.svg)](https://www.anthropic.com/news/skills)
+
 # caldiaworks-marketplace
 
 Multi-agent skill marketplace supporting Claude Code, Antigravity, Gemini CLI, and Codex.
