@@ -28,7 +28,13 @@
         "./skills/pull-request",
         "./skills/planning",
         "./skills/re-structure-analysis",
-        "./skills/re-verify-structure"
+        "./skills/re-verify-structure",
+        "./skills/re-visualize-logic",
+        "./skills/re-verify-logic",
+        "./skills/re-extract-requirements",
+        "./skills/re-verify-requirements",
+        "./skills/re-generate-report",
+        "./skills/re-verify-report"
       ]
     }
   ]
