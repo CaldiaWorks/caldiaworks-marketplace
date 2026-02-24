@@ -1,6 +1,6 @@
 ---
 name: requirements-docx
-version: 0.1.0
+version: 0.2.0
 description: "Convert USDM/EARS requirements documents from Markdown to professionally formatted Word (.docx) files for client submission. Generates cover pages, table of contents, headers/footers, and styled requirement hierarchies. Leverages the docx skill for Word file generation. Use when: export requirements to Word, requirements to docx, USDM to Word, convert requirements document, 要件書をWord出力, 要件定義書のdocx変換, Word形式で要件書を作成, 要件定義書をWordに変換."
 ---
 
@@ -56,17 +56,19 @@ Determine the document structure:
 
 Confirm the layout with the user before proceeding.
 
-### Step 3: Read docx-js Reference (MANDATORY)
+### Step 3: Read docx-js Pitfalls Guide (MANDATORY)
 
-**You MUST read the docx skill's `docx-js.md` reference file completely before generating any code.** This file contains critical syntax, formatting rules, and common pitfalls for the docx-js library.
+**You MUST read the docx-js pitfalls guide before generating any code.**
 
-Read the file at: `~/.agents/skills/docx/docx-js.md`
+Read the file at: `references/docx-js-pitfalls.md` in this skill's directory.
 
 ### Step 4: Generate and Execute docx-js Script
 
 1. Read the style definitions from `references/docx-style-definitions.md` in this skill's directory.
 2. Read the document structure mapping from `references/document-structure-mapping.md` in this skill's directory.
-3. Generate a JavaScript file in a temporary working directory within the project (e.g., `.tmp/`). Do not generate scripts in the project root. Delete the temporary directory after execution.
+3. Check if a conversion script already exists at `scripts/usdm-md-to-docx.js` in the project root.
+   - **IF exists**: Use the existing script. If the script fails or the output has issues, fix the script in-place rather than creating a new temporary script.
+   - **IF not exists**: Generate a JavaScript file at `scripts/usdm-md-to-docx.js` (permanent location). Do not generate scripts in `.tmp/` or delete them after execution.
 4. The generated script must implement:
    - Cover page with logo placeholder, title, metadata table, and confidentiality notice
    - Table of contents referencing Heading 1 through Heading 4
@@ -82,10 +84,16 @@ Read the file at: `~/.agents/skills/docx/docx-js.md`
 1. Save the .docx file in the current working directory.
 2. Name the file using the Document ID from metadata (e.g., `REQ-DOC-20260221-001-requirements-docx.docx`). If no Document ID is found, use the input filename with `.docx` extension.
 3. Report the output file path and size to the user.
-4. Suggest visual verification:
+4. Verify internal structure if layout issues are suspected:
    ```bash
-   soffice --headless --convert-to pdf <output.docx>
-   pdftoppm -jpeg -r 150 <output.pdf> page
+   # Check heading styles are applied (pStyle should appear)
+   unzip -p <output.docx> word/document.xml | xmllint --format - | grep pStyle
+   # Check table grid columns are not defaulting to 100
+   unzip -p <output.docx> word/document.xml | xmllint --format - | grep gridCol
+   ```
+5. Visual verification with LibreOffice is available only if `soffice` is installed:
+   ```bash
+   which soffice && soffice --headless --convert-to pdf <output.docx>
    ```
 
 ## Document Structure Mapping
@@ -186,6 +194,7 @@ Apply styles from `references/docx-style-definitions.md`. Key points:
 
 ## References
 
+- `references/docx-js-pitfalls.md` — Critical pitfalls when using docx-js (CRLF, heading styles)
 - `references/document-structure-mapping.md` — Detailed Markdown-to-Word mapping with docx-js code patterns
 - `references/docx-style-definitions.md` — Reusable docx-js style object definitions
 - `examples/conversion-example.md` — Before/after conversion walkthrough

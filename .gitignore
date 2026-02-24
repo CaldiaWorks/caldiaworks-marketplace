@@ -12,3 +12,4 @@ skills-lock.json
 .docs/
 *-workspace/
 **/evals/
+.DS_Store
