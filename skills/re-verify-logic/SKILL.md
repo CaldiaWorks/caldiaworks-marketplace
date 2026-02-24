@@ -16,6 +16,17 @@ Verify logic diagrams produced by `re-visualize-logic` against actual source cod
 
 **Gate rule**: Phase 3 (`re-extract-requirements`) shall not proceed until verification produces a `PASS` or `WARN` verdict for all components.
 
+## Three Principles (Critic Perspective)
+
+### 1. Code is Truth
+- The source code is the sole authority. If the logic diagram says something the code does not confirm, the diagram is wrong.
+
+### 2. Traceability to Line
+- Every line number in the diagram must resolve to actual code. Unresolvable references are hallucinations.
+
+### 3. Behavior over Intent
+- Verify what the diagram claims against what the code shows. Do not interpret or justify discrepancies.
+
 ## Execution
 
 ### Step 1: Load Artifacts

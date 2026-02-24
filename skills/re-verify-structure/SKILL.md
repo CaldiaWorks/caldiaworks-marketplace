@@ -3,7 +3,8 @@ name: re-verify-structure
 version: 0.1.0
 description: "Verify structure analysis output against source code. Check file:line references, component completeness, and Mermaid diagram validity. Runs as independent Critic in fork context. Use when: verify structure, check structure map, validate phase 1, re-verify-structure."
 args:
-  analysis: required  # Analysis name (e.g., "my-analysis"). Manifest path derived as docs/reverse/{analysis}/manifest.json
+  analysis: optional  # Analysis name (e.g., "my-analysis"). Manifest path derived as docs/reverse/{analysis}/manifest.json
+  manifest: optional  # Direct path to manifest.json. Takes precedence over analysis if both provided
 allowed-tools: Read, Grep, Glob, Bash, Write, mcp__serena__find_symbol, mcp__serena__search_for_pattern, mcp__serena__list_dir, mcp__serena__get_symbols_overview
 context: fork
 agent: general-purpose
@@ -30,10 +31,15 @@ Verify the structure map produced by `re-structure-analysis` against the actual 
 
 ### Step 1: Load Artifacts
 
+Determine the manifest path:
+- If `manifest` argument is provided, use it directly
+- If `analysis` argument is provided, derive path as `docs/reverse/{analysis}/manifest.json`
+- At least one of `manifest` or `analysis` must be provided
+
 Read the manifest and structure map:
 ```
-docs/reverse/{analysis}/manifest.json
-docs/reverse/{analysis}/01-structure-map.md
+{manifest-path}
+{analysis-dir}/01-structure-map.md
 ```
 
 Extract from the manifest:

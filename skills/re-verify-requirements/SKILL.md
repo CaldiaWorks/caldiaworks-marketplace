@@ -16,6 +16,17 @@ Verify EARS requirements produced by `re-extract-requirements` against actual so
 
 **Gate rule**: Phase 4 (`re-generate-report`) shall not proceed until verification produces a `PASS` or `WARN` verdict for all components.
 
+## Three Principles (Critic Perspective)
+
+### 1. Code is Truth
+- The source code is the sole authority. If a requirement claims behavior not present in code, the requirement is wrong.
+
+### 2. Traceability to Line
+- Every `file:line` reference in the requirements must resolve to actual code. Unresolvable references are hallucinations.
+
+### 3. Behavior over Intent
+- Verify what the requirement claims against what the code shows. Do not interpret or justify discrepancies.
+
 ## Execution
 
 ### Step 1: Load Artifacts

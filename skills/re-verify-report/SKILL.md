@@ -13,6 +13,17 @@ agent: general-purpose
 
 Verify the consolidated As-Is specification produced by `re-generate-report` against the Phase 1-3 source artifacts. Runs as an independent Critic in a separate agent context.
 
+## Three Principles (Critic Perspective)
+
+### 1. Code is Truth
+- Phase 1-3 artifacts are the sole authority. If the report states something not present in the artifacts, the report is wrong.
+
+### 2. Traceability to Line
+- Every requirement in the traceability matrix must trace back to a Phase 3 document and ultimately to source code. Broken chains are failures.
+
+### 3. Behavior over Intent
+- Verify what the report claims against what the artifacts show. Do not interpret or justify discrepancies.
+
 ## Execution
 
 ### Step 1: Load Artifacts
