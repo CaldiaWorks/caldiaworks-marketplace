@@ -224,10 +224,13 @@ Write to `docs/reverse/{analysis}/04-report.md`:
 
 ## Validation Before Completion
 
+After writing the report, re-read it and verify every number against the source data. Counting errors in the executive summary undermine confidence in the entire report.
+
 - [ ] All Phase 1-3 artifacts collected and referenced
 - [ ] Cross-reference verification completed
 - [ ] Traceability matrix links all requirements to source
 - [ ] Question list prioritized (Critical / Important / Informational)
+- [ ] **Count verification**: Total requirements in executive summary matches actual count in requirements catalog. EARS type distribution sums to the total. Question list count matches actual items in Appendix C. Re-count by enumerating each item — do not rely on numbers from Phase 3 documents or your own earlier statements
 - [ ] Executive summary reflects actual findings (no speculation)
 - [ ] No requirements added that aren't in Phase 3 documents
 - [ ] manifest.json updated
