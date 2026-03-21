@@ -16,6 +16,21 @@ Complete these steps in order:
 
 ### Step 1: Explore Context
 
+Investigate **all information sources** referenced in the user's input before proceeding.
+
+#### 1a: External References
+
+Scan the user's input for external references — app names, technology names, URLs, specifications, standards, protocols, services, or documents. If any are found:
+
+- **URLs**: Fetch and read the linked content to understand scope, API surface, constraints, or specifications
+- **Named technologies/services**: Search for official documentation, capabilities, limitations, and integration patterns
+- **Existing apps or products**: Research their features, behavior, and design to understand what the user is referencing
+- **Standards/protocols**: Look up the specification to understand requirements and constraints
+
+Do NOT proceed to Step 2 until all external references are investigated. Misunderstanding an external reference propagates errors into every subsequent step.
+
+#### 1b: Project Context
+
 Review the current project to understand what already exists:
 
 - Check project files, documentation, and recent commits
