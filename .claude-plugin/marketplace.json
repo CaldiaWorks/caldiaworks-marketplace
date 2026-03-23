@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "CaldiaWorks plugin marketplace",
-    "version": "0.1.25",
+    "version": "0.1.26",
     "pluginRoot": "./"
   },
   "plugins": [
@@ -34,7 +34,8 @@
         "./skills/re-extract-requirements",
         "./skills/re-verify-requirements",
         "./skills/re-generate-report",
-        "./skills/re-verify-report"
+        "./skills/re-verify-report",
+        "./skills/divergence-loop"
       ]
     }
   ]
