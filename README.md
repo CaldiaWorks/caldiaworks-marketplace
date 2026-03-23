@@ -46,6 +46,7 @@ npx skills add CaldiaWorks/caldiaworks-marketplace -s issue-create
 npx skills add CaldiaWorks/caldiaworks-marketplace -s branch-create
 npx skills add CaldiaWorks/caldiaworks-marketplace -s pull-request
 npx skills add CaldiaWorks/caldiaworks-marketplace -s planning
+npx skills add CaldiaWorks/caldiaworks-marketplace -s divergence-loop
 npx skills add CaldiaWorks/caldiaworks-marketplace -s re-structure-analysis
 ```
 
@@ -55,6 +56,7 @@ npx skills add CaldiaWorks/caldiaworks-marketplace -s re-structure-analysis
 
 | Skill | Description |
 |-------|-------------|
+| **divergence-loop** | Context-reset divergence brainstorming with persona injection and constraint-based convergence |
 | **ideation** | Turn rough ideas into structured idea documents through collaborative dialogue with feasibility evaluation |
 | **ears** | Write unambiguous specifications using EARS (Easy Approach to Requirements Syntax) patterns |
 | **usdm** | Decompose requirements into structured USDM hierarchy (Requirement -> Reason -> Description -> Specification) |
