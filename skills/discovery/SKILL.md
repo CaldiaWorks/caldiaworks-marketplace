@@ -17,11 +17,13 @@ The output is a requirements memo -- a file that captures what was learned durin
 
 Discovery is a conversation loop with a shared artifact. The requirements memo file is created on the first turn and updated every turn. The user has the file open and reads it as the conversation progresses. This is not a one-sided interrogation -- it is a collaborative structuring of the user's thoughts, mediated by a living document.
 
+**The memo is a byproduct, not the goal.** The goal is to help the user think clearly about what they need. The memo captures what emerges from that conversation. If the user is talking freely and productively, the memo will fill itself. Never steer the conversation toward empty memo sections -- steer it toward whatever the user most needs to think through.
+
 ```
-User speaks --> Update memo file --> Ask one question --> User answers --> repeat
-                     ^                                          |
-                     |__________________________________________|
-                                 (until user says done)
+User speaks --> Update memo file --> Respond (may include a question) --> User speaks --> repeat
+                     ^                                                         |
+                     |_________________________________________________________|
+                                       (until user says done)
 ```
 
 ## Step 1: Receive Initial Input
@@ -42,14 +44,15 @@ On each turn after the user responds:
 
 1. **Update the memo file** -- incorporate the user's answer into the appropriate section(s). Add new information, refine existing entries, note contradictions. The user should see the file change after every response they give.
 
-2. **Ask one question** -- select the next most valuable question based on what is still unknown or underspecified. Use the question frame as a guide, but follow the natural flow of conversation. Not every axis needs to be covered -- stop when the user says so.
+2. **Respond** -- if something is unclear or underspecified, ask **one** question. If the user's input was rich and self-contained, reflect what you understood and let the user lead the next turn. Silence is a valid response shape -- not every turn needs a question.
 
 Rules for the dialogue:
 
 - **One question per turn.** Never batch multiple questions. The user answers one thing at a time.
 - **Never guess.** If something is ambiguous, ask. Do not fill in assumptions and move on. If you interpret something, state the interpretation and ask if it is correct.
-- **No solutions.** Do not propose implementations, architectures, technology choices, or action plans. The job is to clarify what is needed, not how to build it. If the user drifts toward solutions, note it in the memo and redirect to uncovering the underlying need.
+- **No solutions.** Do not propose implementations, architectures, technology choices, or action plans. The job is to clarify **what is needed and why**, not **how to build it**. This includes design-phase questions like schema choices, format decisions, integration strategies, or technical trade-offs. If the user raises these topics, capture them in Discussion Points as "design decisions to make later" and redirect to the underlying need. Discovery questions: "What problem does this solve?", "Who uses this?", "What happens today without this?" Design questions (out of scope): "Should the DB be unified or separate?", "What format should the data use?", "Which API should this integrate with?"
 - **No code.** Do not write, suggest, or analyze code. This is Explore, not Implement.
+- **Never propose completion.** The user decides when discovery is done. Do not suggest finishing, wrapping up, or moving on. If you run out of questions, say so honestly ("I have no further questions at this point") and let the user decide whether to continue or stop.
 - **Follow the user's energy.** If the user wants to go deep on one topic, go deep. Do not rigidly march through a checklist. The question frame is a compass, not a railroad.
 
 ## Step 3: Finalize
@@ -75,7 +78,7 @@ Six axes to guide question selection. Not a checklist to exhaust -- a compass fo
 | Success Criteria | How will "done" or "good" be recognized? What does success look like? |
 | Concerns | What feels risky? What might go wrong? What is the user most uncertain about? |
 
-When selecting a question, prefer axes where the current memo section is empty or thin. But if the user's last answer opens a thread worth pulling, follow that thread regardless of axis coverage.
+When selecting a question, follow the thread the user opened last. The frame exists for moments when you genuinely do not know what to ask next -- not as a to-do list to work through.
 
 ## Memo Template
 
