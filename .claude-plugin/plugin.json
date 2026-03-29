@@ -1,6 +1,6 @@
 {
   "name": "caldiaworks-marketplace",
-  "version": "0.1.26",
+  "version": "0.1.27",
   "description": "CaldiaWorks plugin marketplace",
   "skills": [
     "./skills/ears",
@@ -24,6 +24,7 @@
     "./skills/re-verify-requirements",
     "./skills/re-generate-report",
     "./skills/re-verify-report",
-    "./skills/divergence-loop"
+    "./skills/divergence-loop",
+    "./skills/discovery"
   ]
 }
