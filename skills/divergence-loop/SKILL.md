@@ -1,15 +1,17 @@
 ---
 name: divergence-loop
-description: "Context-reset divergence brainstorming skill. Generates wild ideas through multiple rounds of subagent execution with extreme persona injection, then applies real-world constraints for structured convergence into multiple final ideas. Use when: brainstorm, diverge, divergence loop, idea generation, wild ideas, crazy ideas, generate ideas, brainstorming session, ideation divergence, think outside the box, or when the user wants to break out of conventional thinking patterns."
+description: "Context-reset divergence brainstorming skill. Generates wild ideas through multiple rounds of context-isolated generation with extreme persona injection, then applies real-world constraints for structured convergence into multiple final ideas. Use when: brainstorm, diverge, divergence loop, idea generation, wild ideas, crazy ideas, generate ideas, brainstorming session, ideation divergence, think outside the box, or when the user wants to break out of conventional thinking patterns."
 ---
 
 # Divergence Loop
 
-A brainstorming skill that forces genuine creative divergence by exploiting context isolation between subagent rounds, then bridges wild ideas back to reality through constraint-based convergence.
+A brainstorming skill that forces genuine creative divergence by exploiting context isolation between generation rounds, then bridges wild ideas back to reality through constraint-based convergence.
 
 ## Why Context Reset Matters
 
-LLMs have a strong convergence bias -- given enough context, they drift toward safe, structured, "reasonable" outputs. Prompt-level instructions ("don't converge", "be wild") fail because the model's training rewards coherence over chaos. The only reliable way to maintain divergence across multiple rounds is **physical context isolation**: each generation round runs in a fresh subagent with zero memory of prior rounds. Files are the sole communication channel.
+LLMs have a strong convergence bias -- given enough context, they drift toward safe, structured, "reasonable" outputs. Prompt-level instructions ("don't converge", "be wild") fail because the model's training rewards coherence over chaos. The only reliable way to maintain divergence across multiple rounds is **context isolation**: each generation round runs in a fresh execution context with zero memory of prior rounds. Files are the sole communication channel.
+
+**How to achieve context isolation** depends on the platform. Use whatever mechanism provides a clean context with no carry-over from prior rounds (e.g., spawning a new agent, opening a new chat, or calling an API with an independent message history). The specific tool does not matter — what matters is that each round's generator has NO access to ideas from other rounds.
 
 ## Workflow Overview
 
@@ -18,9 +20,9 @@ User Theme --> [Divergence Loop] --> [Convergence] --> Multiple Final Ideas
                     |                      |
               N rounds of:           User constraints +
               Persona-injected       last round ideas
-              subagent generation    = filtered output
-              + mashup prompt
-              extraction
+              context-isolated       = filtered output
+              generation + mashup
+              prompt extraction
 ```
 
 ## Phase 1: Divergence Loop
@@ -44,12 +46,12 @@ Selection rules:
 - Never reuse a persona within the same session
 - Each persona selection is random within its category group
 
-### Step 2: Run Divergence Round (3 Parallel Subagents)
+### Step 2: Run Divergence Round (3 Context-Isolated Generators)
 
-Spawn **3 subagents in parallel** -- one per persona. Each subagent runs in complete context isolation and generates 30+ ideas independently.
+Run **3 independent generation tasks** -- one per persona. Each task runs in complete context isolation (no shared memory between generators) and produces 30+ ideas independently. Run them in parallel when the platform supports it.
 
-Each subagent prompt must include:
-1. The persona as a system-level framing (not "pretend to be X" -- instead, inject the persona's worldview as the subagent's actual operating constraints)
+Each generation task prompt must include:
+1. The persona as a system-level framing (not "pretend to be X" -- instead, inject the persona's worldview as the generator's actual operating constraints)
 2. The round's theme (see theme progression below)
 3. Explicit instruction to generate 30+ ideas as a raw list, no categories, no evaluation, no ranking
 4. Instruction to save output to `.docs/divergence-loop/<session-id>/round-<N>-<persona-label>-ideas.md`
@@ -61,7 +63,7 @@ Each subagent prompt must include:
 
 This "go wild and come back" structure lets intermediate rounds explore freely without worrying about relevance, while the final round re-grounds everything in the user's intent. The personas in the final round have no memory of prior rounds, but the mashup-driven divergence from earlier rounds has already expanded the persona catalog's effective range.
 
-Example subagent prompt structure:
+Example prompt structure:
 
 ```
 You are operating under these absolute constraints:
@@ -79,15 +81,15 @@ Generate at least 30 ideas related to the theme. Rules:
 Save the complete list to: <output path>
 ```
 
-After all 3 subagents complete, do NOT read or summarize their outputs to the user. The ideas exist only in the files.
+After all 3 generators complete, do NOT read or summarize their outputs to the user. The ideas exist only in the files.
 
-### Step 3: Extract Mashup Prompt (Subagent)
+### Step 3: Extract Mashup Prompt (Isolated Context)
 
 This step is skipped for the final round and the round before the final round (since the final round uses the original theme, not a mashup).
 
-Spawn a NEW subagent (fresh context). This subagent reads ALL 3 idea files from the current round and produces a mashup prompt for the next intermediate round.
+Run a NEW generation task in a fresh context (no carry-over from prior tasks). This task reads ALL 3 idea files from the current round and produces a mashup prompt for the next intermediate round.
 
-The subagent prompt:
+The prompt:
 
 ```
 Read all idea lists from this round:
@@ -114,7 +116,7 @@ Save the mashup prompt to: <output path for mashup prompt>
 
 Repeat Steps 1-3 for the requested number of rounds. Each round:
 - 3 fresh personas (one per category group, never repeated)
-- 3 fresh subagents in parallel (no context from prior rounds)
+- 3 fresh context-isolated generators in parallel (no context from prior rounds)
 - Theme follows the progression: original -> mashup -> ... -> mashup -> original
 
 After all rounds complete, inform the user that Phase 1 is done and report only: how many rounds ran, which personas were used (all 3 per round). Do not summarize or show any ideas.
@@ -134,11 +136,11 @@ Ask the user for real-world constraints. Examples:
 
 Accept whatever they provide. If they say "none", proceed without constraints.
 
-### Step 6: Run Convergence (Subagent)
+### Step 6: Run Convergence (Isolated Context)
 
-Spawn a final subagent with fresh context. This subagent reads ONLY the last round's 3 idea files (the most diverged, most mutated ideas) and the user's constraints.
+Run a final generation task in a fresh context. This task reads ONLY the last round's 3 idea files (the most diverged, most mutated ideas) and the user's constraints.
 
-The subagent prompt:
+The prompt:
 
 ```
 Read the idea lists from the final round:
@@ -178,6 +180,7 @@ All files are saved under `.docs/divergence-loop/<session-id>/`:
 
 ```
 .docs/divergence-loop/<session-id>/
+  session-log.md             # Session metadata and execution record (REQUIRED)
   round-1-extreme-ideas.md   # Ideas from Round 1 (original theme)
   round-1-famous-ideas.md    #
   round-1-general-ideas.md   #
@@ -194,9 +197,70 @@ All files are saved under `.docs/divergence-loop/<session-id>/`:
 
 Session ID format: `YYYYMMDD-HHMMSS` (e.g., `20260322-143052`)
 
+### Session Log (`session-log.md`)
+
+This file is the **execution record** of the session. It MUST be created at the start and updated as each step completes. It serves as the single source of truth for reviewing whether the skill was executed correctly.
+
+Required structure:
+
+```markdown
+# Session Log
+
+## User Input
+- **Theme**: <user's exact words, unmodified>
+- **Rounds requested**: <number>
+
+## Persona Selection
+
+| Round | Extreme (Cat 1-5) | Famous (Cat 7) | General (Cat 6/8) |
+|-------|-------------------|----------------|-------------------|
+| 1     | #<N> <name>       | #<N> <name>    | #<N> <name>       |
+| ...   | ...               | ...            | ...               |
+
+## Round Execution
+
+### Round 1
+- **Theme type**: original
+- **Theme content**: <user's original theme>
+- **Idea files**: round-1-extreme-ideas.md, round-1-famous-ideas.md, round-1-general-ideas.md
+- **Idea counts**: <extreme count>, <famous count>, <general count>
+- **Mashup extracted**: yes / no (with reason if skipped)
+
+### Round 2
+- **Theme type**: mashup (from Round 1)
+- **Theme content**: <mashup theme — copy the full text from the mashup file>
+- **Idea files**: ...
+- **Idea counts**: ...
+- **Mashup extracted**: ...
+
+### Round N (final)
+- **Theme type**: original (return)
+- **Theme content**: <user's original theme — must match Round 1>
+- **Idea files**: ...
+- **Idea counts**: ...
+- **Mashup extracted**: no (final round)
+
+## Phase 2: Convergence
+
+### Constraints (user's exact words)
+<paste the user's constraint input verbatim>
+
+### Convergence Input
+- **Files read**: <list the 3 idea files from the final round>
+- **Output**: convergence.md
+```
+
+**Rules for session-log.md:**
+- Create at the start of the session with User Input filled in
+- Update after each round completes (do not batch-update at the end)
+- Theme content for the final round MUST be identical to Round 1's theme content
+- Idea counts must reflect the actual number of ideas in each file
+- Constraints must be the user's exact words, not a summary or interpretation
+
 ## Execution Notes
 
-- Each subagent MUST use the Agent tool with a fresh spawn. Do not use SendMessage to continue a prior agent -- that defeats context isolation.
-- If subagent spawning fails, fall back to inline execution but warn the user that divergence quality may be reduced due to context bleed.
+- Each generation task MUST run in a fresh, isolated context. Never continue a prior context -- that defeats context isolation.
+- If context isolation is not available on the platform, fall back to inline execution but warn the user that divergence quality may be reduced due to context bleed.
 - The persona catalog has 80 entries. For sessions with more than 80 rounds (unlikely but possible), recycle personas from the least-recently-used pool.
 - Do not show intermediate files to the user unless explicitly asked. The process is intentionally opaque to prevent premature convergence bias in the user's mind.
+- The session-log.md file is mandatory. A session without a session log is considered incomplete regardless of whether the other files exist.
